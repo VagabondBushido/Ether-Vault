@@ -1,18 +1,77 @@
-# ⚡ EtherVault
-
 <div align="center">
 
-# ⚡ EtherVault
+```ascii
+  _____ _   _              __     __         _ _ 
+ | ____| |_| |__   ___ _ _\ \   / /_ _ _   _| | |_ 
+ |  _| | __| '_ \ / _ \ '__\ \ / / _` | | | | | __|
+ | |___| |_| | | |  __/ |   \ V / (_| | |_| | | |_ 
+ |_____|\__|_| |_|\___|_|    \_/ \__,_|\__,_|_|\__|
+```
 
-<img width="800" alt="EtherVault Banner" src="https://raw.githubusercontent.com/VagabondBushido/Ether-Vault/main/assets/banner.png"/>
+# Ethereum Staking Platform with VGB Rewards
 
-### Stake ETH, Earn VGB - Simple, Secure, Rewarding
+> Stake ETH. Earn VGB. DeFi Made Simple.
 
-[![Smart Contract](https://img.shields.io/badge/Contract-Verified-2ea44f?style=for-the-badge&logo=ethereum)](https://sepolia.etherscan.io/address/0xd01c85418F6Bf3b945ea1668E4Dfd4D4361Ab58D)
+[![Contract](https://img.shields.io/badge/Contract-Verified-2ea44f?style=for-the-badge&logo=ethereum)](https://sepolia.etherscan.io/address/0xd01c85418F6Bf3b945ea1668E4Dfd4D4361Ab58D)
 [![Demo](https://img.shields.io/badge/Demo-Watch%20Now-ff69b4?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=XYssCK5NHHk)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
 </div>
+
+## 📝 Overview
+
+EtherVault is a decentralized staking platform where users can:
+- Stake ETH (minimum 0.01 ETH)
+- Earn VGB tokens as rewards (10% APR)
+- Withdraw anytime
+- Claim rewards on demand
+
+## 🔄 How It Works
+
+```mermaid
+graph LR
+    A[User] -->|Stake ETH| B[Contract]
+    B -->|Lock| C[Stake Pool]
+    B -->|Calculate| D[Rewards]
+    D -->|Generate| E[VGB Tokens]
+    E -->|Transfer| A
+```
+
+## 💎 Core Features
+
+### Smart Contract (`StakingContract.sol`)
+```solidity
+contract StakingContract is ReentrancyGuard, Pausable, Ownable {
+    uint256 public constant REWARD_RATE = 10; // 10% APR
+    uint256 public constant MINIMUM_STAKE = 0.01 ether;
+    
+    struct Stake {
+        uint256 amount;
+        uint256 timestamp;
+    }
+    
+    mapping(address => Stake) public stakes;
+    uint256 public totalStaked;
+}
+```
+
+### Key Functions
+
+```solidity
+function stake() external payable;       // Stake ETH
+function unstake() external;             // Withdraw ETH + Rewards
+function calculateReward(address user) public view returns (uint256);
+function getStakedBalance(address user) external view returns (uint256);
+```
+
+## 💰 Reward System
+
+Rewards are calculated using a time-weighted formula:
+
+```js
+reward = (stakedAmount * REWARD_RATE * stakingDuration) / (365 days * 100)
+```
+
+### Example Rewards
 
 ## 🎥 Demo
 
@@ -59,10 +118,12 @@ contract StakingContract {
     uint256 public constant REWARD_RATE = 10; // 10% APR
     uint256 public constant MINIMUM_STAKE = 0.01 ether;
     
-    struct Stake {
-        uint256 amount;
-        uint256 timestamp;
-    }
+    mapping(address => uint256) public Balances;
+    
+    function stake() external payable;
+    function unstake(uint256 _amount) external;
+    function getRewards(address _address) external view returns (uint256);
+    function claimRewards() external;
 }
 ```
 
