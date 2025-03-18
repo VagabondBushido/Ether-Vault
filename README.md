@@ -2,25 +2,50 @@
 
 # ⚡ EtherVault
 
-> A decentralized ETH staking platform with VGB token rewards
+> Stake ETH, Earn VGB - A Modern DeFi Staking Platform
 
-[![Contract](https://img.shields.io/badge/Sepolia-Verified-2ea44f?style=for-the-badge)](https://sepolia.etherscan.io/address/0xd01c85418F6Bf3b945ea1668E4Dfd4D4361Ab58D)
-[![Demo](https://img.shields.io/badge/YouTube-Demo-red?style=for-the-badge)](https://www.youtube.com/watch?v=XYssCK5NHHk)
+[![Contract](https://img.shields.io/badge/Sepolia-Verified-2ea44f?style=for-the-badge&logo=ethereum)](https://sepolia.etherscan.io/address/0xd01c85418F6Bf3b945ea1668E4Dfd4D4361Ab58D)
+[![Demo](https://img.shields.io/badge/Demo-Watch_Now-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=XYssCK5NHHk)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
 </div>
 
-## 🎯 Overview
+## 📺 Demo Video
 
-EtherVault enables users to:
-- Stake ETH and earn VGB tokens
-- Minimum stake: 0.01 ETH
-- Reward rate: 10% APR
-- No lock-up period
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=XYssCK5NHHk">
+    <img src="https://img.youtube.com/vi/XYssCK5NHHk/maxresdefault.jpg" width="600" alt="EtherVault Demo"/>
+  </a>
+</div>
 
-## 📦 Smart Contracts
+## 🚀 Project Overview
 
-### Main Staking Contract
+EtherVault is a decentralized finance (DeFi) platform that allows users to stake Ethereum (ETH) and earn Vagabond (VGB) tokens as rewards. The project demonstrates a complete staking ecosystem with a React frontend and Solidity smart contracts.
+
+### Key Features:
+- 🔒 **Secure ETH Staking**: Stake your ETH securely with minimum 0.01 ETH
+- 💎 **VGB Token Rewards**: Earn VGB tokens at 10% APR
+- ⏱️ **No Lock-up Period**: Withdraw your ETH anytime
+- 📈 **Time-weighted Rewards**: Longer stakes = Higher rewards
+- 🎨 **Modern UI**: Clean, responsive interface with real-time updates
+
+## 💻 Technology Stack
+
+### Frontend
+- React with Vite
+- Wagmi/Viem for blockchain interactions
+- Material UI for sleek components
+- Framer Motion for animations
+
+### Backend (Smart Contracts)
+- Solidity ^0.8.28
+- OpenZeppelin contracts for security
+- Foundry for development and testing
+
+## 📊 Smart Contract Architecture
+
 ```solidity
+// Staking Contract - Handles ETH staking and VGB rewards
 contract StakingContract {
     mapping(address => uint256) public Balances;
     
@@ -30,10 +55,8 @@ contract StakingContract {
     function getRewards(address _address) external view returns (uint256);
     function claimRewards() external;
 }
-```
 
-### VGB Token Contract
-```solidity
+// VGB Token - ERC20 token for rewards
 contract VagabondCoin is ERC20 {
     address public stakingContract;
     
@@ -45,75 +68,47 @@ contract VagabondCoin is ERC20 {
 
 ## 💰 Reward System
 
-```js
+Rewards are calculated using a time-weighted formula:
+
+```javascript
 // Time-weighted reward calculation
 reward = (stakedAmount * 10 * stakingDuration) / (365 days * 100)
-
-// Example: 1 ETH staked for 30 days
-1 ETH * 10% * (30/365) = 0.0082 ETH worth of VGB
 ```
 
-## 🚀 Quick Start
-
-```bash
-# Install dependencies
-cd frontend && npm install
-cd backend && forge install
-
-# Start development
-npm run dev    # Frontend
-forge build    # Backend
-```
-
-## 🔐 Contract Addresses (Sepolia)
-
-```
-Staking: 0xd01c85418F6Bf3b945ea1668E4Dfd4D4361Ab58D
-Network: Sepolia (Chain ID: 11155111)
-```
+| Stake Amount | Duration | VGB Reward    |
+|--------------|----------|---------------|
+| 1 ETH        | 30 days  | 0.0082 VGB    |
+| 5 ETH        | 90 days  | 0.123 VGB     |
+| 10 ETH       | 180 days | 0.493 VGB     |
 
 ## 🛡️ Security Features
 
-- Reentrancy protection
-- Pausable functionality
-- Owner controls
-- Emergency withdrawal
-- Integer overflow checks
+- ✅ **Reentrancy Protection**: Guards against reentrant attacks
+- ✅ **Pausable**: Emergency stop functionality
+- ✅ **Access Control**: Owner-only sensitive functions
+- ✅ **Emergency Withdrawal**: Recovery of stuck funds
+- ✅ **Integer Overflow Protection**: Safe math operations
 
-## 🔧 Tech Stack
-
-```
-Frontend               Backend
-- React               - Solidity
-- Wagmi/Viem         - Foundry
-- Material-UI         - OpenZeppelin
-```
-
-## 🧪 Testing
+## 🔧 Getting Started
 
 ```bash
-# Smart Contract Tests
-cd backend
-forge test
+# Clone the repository
+git clone https://github.com/YourUsername/EtherVault.git
+cd EtherVault
 
-# Frontend Tests
+# Install frontend dependencies
 cd frontend
-npm test
+npm install
+
+# Start frontend development server
+npm run dev
+
+# Setup backend (in another terminal)
+cd backend
+forge install
+forge build
 ```
 
-## 📝 Environment Setup
+## 🌐 Deployment
 
-```bash
-# frontend/.env
-VITE_ALCHEMY_API_KEY=your_key_here
-
-# backend/.env
-SEPOLIA_RPC_URL=your_rpc_url
-PRIVATE_KEY=your_key
-```
-
----
-
-<div align="center">
-Made with 💙 using Solidity & React
-</div> 
+The project is deployed on the Sepolia testnet:
