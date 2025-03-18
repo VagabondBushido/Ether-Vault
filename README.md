@@ -112,3 +112,5 @@ forge build
 ## 🌐 Deployment
 
 The project is deployed on the Sepolia testnet:
+https://sepolia.etherscan.io/address/0xA685c85311B78C9319c397252d6CCDcd58EdcB59#code
+https://sepolia.etherscan.io/address/0xd01c85418F6Bf3b945ea1668E4Dfd4D4361Ab58D
